@@ -9,7 +9,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
+//@Configuration
 public class BasicAuthenticationSecurityConfiguration {
 
     // Filter Chain
@@ -30,7 +30,7 @@ public class BasicAuthenticationSecurityConfiguration {
                 // 상태가 없는 세션 사용
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 // csrf비활성
-                .csrf().disable().build();
+                .csrf(csrf -> csrf.disable()).build();
 
         return build;
     }
