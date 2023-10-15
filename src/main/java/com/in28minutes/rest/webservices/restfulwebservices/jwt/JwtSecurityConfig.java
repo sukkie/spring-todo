@@ -58,14 +58,11 @@ public class JwtSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.
                         sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .oauth2ResourceServer(
-                        OAuth2ResourceServerConfigurer::jwt)
-                .httpBasic(
-                        Customizer.withDefaults())
-                .headers(header -> {
-                    header.
-                            frameOptions().sameOrigin();
-                })
+                .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()))
+                .httpBasic(Customizer.withDefaults())
+                .headers(Customizer.withDefaults())
+                .headers((headers) -> headers.frameOptions(
+                        frameOptions -> frameOptions.sameOrigin()))
                 .build();
     }
 
